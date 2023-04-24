@@ -1,21 +1,21 @@
 [
   {
     "type": "java",
-    "name": "jar (in project NTTest)",
+    "name": "jar (in project FRCTesting)",
     "extensions": [
       {
-        "name": "Sim GUI",
-        "libName": "/Users/owbusler/owenworkspace/Backup20230314/NTTesting/WPIProject/NTTest/build/jni/release/libhalsim_gui.dylib",
-        "defaultEnabled": true
+        "name": "Sim DriverStation",
+        "libName": "R:\\Documents\\FRC\\FRCTesting\\build\\jni\\release\\halsim_ds_socket.dll",
+        "defaultEnabled": false
       },
       {
-        "name": "Use Real DriverStation",
-        "libName": "/Users/owbusler/owenworkspace/Backup20230314/NTTesting/WPIProject/NTTest/build/jni/release/libhalsim_ds_socket.dylib",
-        "defaultEnabled": false
+        "name": "Sim GUI",
+        "libName": "R:\\Documents\\FRC\\FRCTesting\\build\\jni\\release\\halsim_gui.dll",
+        "defaultEnabled": true
       }
     ],
     "environment": {},
-    "libraryDir": "/Users/owbusler/owenworkspace/Backup20230314/NTTesting/WPIProject/NTTest/build/jni/release",
+    "libraryDir": "R:\\Documents\\FRC\\FRCTesting\\build\\jni\\release",
     "mainClassName": "frc.robot.Main"
   }
 ]
