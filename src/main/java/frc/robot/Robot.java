@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.GlobalVariables.Variables;
 import frc.PIDControllers.PIDControllers;
 
@@ -18,8 +17,15 @@ import frc.PIDControllers.PIDControllers;
  */
 public class Robot extends TimedRobot {
 
+  //global cariables
   public Variables variables = new Variables(this);
   public PIDControllers pidControllers = new PIDControllers(this);
+  public Logging logger = new Logging(this);
+  public SmartDashboardInterface smartDashboardInterface = new SmartDashboardInterface(this);
+
+
+  //timers
+  public Timer keepAliveTimer = new Timer();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -27,7 +33,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //init PID controllers
     pidControllers.initPIDControllers();
+
+    //start timers
+    keepAliveTimer.start();
   }
 
   /** This function is run once each time the robot enters autonomous mode. */
@@ -37,31 +47,30 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    double fromDB = SmartDashboard.getNumber("TestNumber", -1);
+    //call logging
+    logger.robotLogging();
 
-    if(fromDB != -1){
-
-      System.out.println(pidControllers.testPidController.getP());
-      SmartDashboard.putNumber("TestTimer", Timer.getFPGATimestamp());
-      variables.testPID_P = Timer.getFPGATimestamp();
-      pidControllers.initPIDControllers();
-      SmartDashboard.putNumber("TestNumber", -1);
-      System.out.println(pidControllers.testPidController.getP());
-    }
-
+    //put on SD
+    smartDashboardInterface.updateSmartDashboard();
   }
 
   @Override
-  public void disabledPeriodic() {}
+  /** This function is called periodically when robot is disabeled. */
+  public void disabledPeriodic() {
+
+  }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+
   }
 
   /** This function is called once each time the robot enters teleoperated mode. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+
+  }
 
   /** This function is called periodically during teleoperated mode. */
   @Override
@@ -70,12 +79,19 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters test mode. */
   @Override
-  public void testInit() {}
+  public void testInit() {
+    
+  }
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
 
+  }
+
+  /** This function is called periodically during simulations. */
   @Override
-  public void simulationPeriodic() {}
+  public void simulationPeriodic() {
+
+  }
 }
